@@ -32,21 +32,25 @@ app.get("/api", (req, res)=>{
 })
 
 app.get("/api/:date", (req,res)=>{
-
-  const {date} = req.params;
+  // dateparams
+  const dateParms = req.params.date;
   console.log(date)
+  // new date holder
   let dateHolder;
-
+   // if date is a number = !
   if(!isNaN(date)){
-    dateHolder = new Date(parseInt(date));
-    console.log(date)
+    dateHolder = new Date(parseInt(dateParms));
+    console.log(dateHolder)
   }else{
-    dateHolder = new Date(date);
+    
+    dateHolder = new Date(dateParms);
   }
-
-  if(date.toString()=== "Invalid Data"){
+  // if the invalid data
+  if(dateHolder.toString()=== "Invalid Data"){
     return res.json({error: "Invalid Date"})
   }
+
+  // finally send it plzzzz.zzz.z..z.z..z
 
   const unix = dateHolder.getTime();
   const utc = dateHolder.toUTCString();
