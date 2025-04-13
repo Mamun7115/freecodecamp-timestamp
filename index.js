@@ -34,11 +34,11 @@ app.get("/api", (req, res)=>{
 app.get("/api/:date", (req,res)=>{
   // dateparams
   const dateParms = req.params.date;
-  console.log(date)
+  console.log(dateParms)
   // new date holder
   let dateHolder;
    // if date is a number = !
-  if(!isNaN(date)){
+  if(!isNaN(dateParms)){
     dateHolder = new Date(parseInt(dateParms));
     console.log(dateHolder)
   }else{
@@ -46,7 +46,7 @@ app.get("/api/:date", (req,res)=>{
     dateHolder = new Date(dateParms);
   }
   // if the invalid data
-  if(dateHolder.toString()=== "Invalid Data"){
+  if(dateHolder.toString()=== "Invalid Date"){
     return res.json({error: "Invalid Date"})
   }
 
