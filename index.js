@@ -20,6 +20,17 @@ app.get("/", (req, res)=>{
 
 })
 
+app.get("/api", (req, res)=>{
+  const currentDate = new Date();
+
+  res.json(
+    {
+      unix: currentDate.getTime(),
+      utc: currentDate.toUTCString()
+    }
+  )
+})
+
 app.get("/api/:date", (req,res)=>{
 
   const {date} = req.params;
@@ -34,7 +45,7 @@ app.get("/api/:date", (req,res)=>{
   }
 
   if(date.toString()=== "Invalid Data"){
-    return res.status(400).send("invalid data mate")
+    return res.json({error: "Invalid Date"})
   }
 
   const unix = dateHolder.getTime();
@@ -43,6 +54,8 @@ app.get("/api/:date", (req,res)=>{
 
   res.json({unix, utc });
 })
+
+
 
 
 
